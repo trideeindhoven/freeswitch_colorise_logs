@@ -2,7 +2,7 @@
 
 import re
 import getopt
-import sys
+import sys, os
 
 def printUsage():
   print('%s <options>'%(sys.argv[0]) )
@@ -25,6 +25,10 @@ for opt, arg in opts:
 
 if logFile is None or logFile == '':
     print("No freeswitch logfile specified!")
+    sys.exit(1)
+
+if not os.path.isfile(logFile):
+    print("File does not exist or not authorised to read file.")
     sys.exit(1)
 
 class colors:
